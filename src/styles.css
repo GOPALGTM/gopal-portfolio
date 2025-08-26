@@ -1,0 +1,95 @@
+@import "@fontsource/inter";
+@import "@fontsource/jetbrains-mono";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Root color scheme */
+:root {
+  color-scheme: dark;
+}
+
+/* Full height setup */
+html, body, #root {
+  height: 100%;
+}
+
+/* Body styling with background gradients */
+body {
+  @apply bg-bg text-text font-sans antialiased;
+
+  background-image:
+    linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(124,77,255,0.06) 100%),
+    radial-gradient(rgba(124,77,255,0.08) 1px, transparent 1px);
+
+  background-size: 100% 100%, 24px 24px;
+  background-position: center top, center;
+}
+
+/* Card styling with neon shadow and hover effect */
+.card {
+  @apply bg-white/5 backdrop-blur-lg border-2 border-cyan/50 rounded-3xl p-6 shadow-neon transition-shadow mb-8;
+  box-shadow: 0 4px 32px rgba(0, 229, 255, 0.15), 0 0 8px 2px #7C4DFF33;
+}
+
+.card:hover {
+  border-color: #00e5ff;
+  box-shadow: 0 8px 48px #00e5FF44, 0 0 12px 2px #7C4DFF44;
+}
+
+/* Badge styling */
+.badge {
+  @apply border border-cyan px-2 py-1 rounded-full bg-white/10 text-xs text-cyan mr-2 mb-2 inline-block;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Neon shadow used throughout */
+.shadow-neon {
+  box-shadow: 0 0 20px #00e5ff66, 0 0 40px #7c4dff44;
+}
+
+/* Hide scrollbars */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  scrollbar-width: none;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fade { animation: fadeIn 1s both; }
+
+/* Fade in up animation */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Smooth scroll for anchors */
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes float {
+  0%   { transform: translateY(0px) scale(1); }
+  50%  { transform: translateY(-8px) scale(1.08);}
+  100% { transform: translateY(0px) scale(1); }
+}
+.animate-float {
+  animation: float 2.5s ease-in-out infinite alternate;
+}
+.shadow-neon {
+  box-shadow: 0 0 18px #00e5ff88, 0 0 30px #7c4dffbb;
+}
+
+
