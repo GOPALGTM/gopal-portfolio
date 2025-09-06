@@ -14,7 +14,7 @@ export default function App() {
   return (
     <Router>
       <Navbar />
-      <main className="max-w-6xl mx-auto px-4 sm:px-6">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 pt-16">
         <Routes>
           <Route
             path="/"

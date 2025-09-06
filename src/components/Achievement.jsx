@@ -22,18 +22,18 @@ const achievements = [
 export default function KeyAchievements() {
   return (
     <section id="achievement" className="max-w-5xl mx-auto px-4 sm:px-6 py-16 text-white">
-      <h2 className="text-4xl font-extrabold text-cyan mb-12 drop-shadow-lg text-center">
+      <h2 className="text-3xl sm:text-4xl font-extrabold text-cyan mb-12 drop-shadow-lg text-center">
         Key Achievements
       </h2>
-      <div className="grid md:grid-cols-3 gap-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12">
         {achievements.map(({ icon, title, description }, idx) => (
           <div
             key={idx}
-            className="bg-white/5 border border-cyan/50 rounded-3xl p-6 shadow-neon flex flex-col items-center text-center gap-4 hover:shadow-xl transition-shadow"
+            className="bg-white/5 border border-cyan/50 rounded-3xl p-4 sm:p-6 shadow-neon flex flex-col items-center text-center gap-3 sm:gap-4 hover:shadow-xl transition-shadow"
           >
             <div className="mb-2">{icon}</div>
-            <h3 className="text-xl font-bold">{title}</h3>
-            <p className="text-white/80 leading-relaxed">{description}</p>
+            <h3 className="text-lg sm:text-xl font-bold">{title}</h3>
+            <p className="text-white/80 leading-relaxed text-sm sm:text-base">{description}</p>
           </div>
         ))}
       </div>

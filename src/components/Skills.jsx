@@ -16,45 +16,60 @@ import {
 } from "react-icons/si";
 
 const skills = [
-  { name: "Python", icon: <SiPython size={38} />, color: "#C9452A" },
-  { name: "AWS", icon: <SiAmazon size={38} />, color: "#FF9900" },
-  { name: "Helm", icon: <SiHelm size={38} />, color: "#8B48A7" },
-  { name: "Docker", icon: <SiDocker size={38} />, color: "#F99C1C" },
-  { name: "Kubernetes", icon: <SiKubernetes size={38} />, color: "#2596D6" },
-  { name: "Jenkins", icon: <SiJenkins size={38} />, color: "#3CBF91" },
-  { name: "Githubactions", icon: <SiGithubactions size={38} />, color: "#3CBF91" },
-  { name: "Prometheus", icon: <SiPrometheus size={38} />, color: "#25B375" },
-  { name: "Postgresql", icon: <SiPostgresql size={38} />, color: "#FDBA36" },
-  { name: "Terraform", icon: <SiTerraform size={38} />, color: "#EF8171" },
-  { name: "Nginx", icon: <SiNginx size={38} />, color: "#FDBA36" },
-  { name: "Mysql", icon: <SiMysql size={38} />, color: "#FDBA36" },
-  { name: "Sonarqube", icon: <SiSonarqube size={38} />, color: "#FDBA36" },
+  { name: "Python", icon: <SiPython />, color: "#C9452A" },
+  { name: "AWS", icon: <SiAmazon />, color: "#FF9900" },
+  { name: "Helm", icon: <SiHelm />, color: "#8B48A7" },
+  { name: "Docker", icon: <SiDocker />, color: "#F99C1C" },
+  { name: "Kubernetes", icon: <SiKubernetes />, color: "#2596D6" },
+  { name: "Jenkins", icon: <SiJenkins />, color: "#3CBF91" },
+  { name: "Githubactions", icon: <SiGithubactions />, color: "#3CBF91" },
+  { name: "Prometheus", icon: <SiPrometheus />, color: "#25B375" },
+  { name: "Postgresql", icon: <SiPostgresql />, color: "#FDBA36" },
+  { name: "Terraform", icon: <SiTerraform />, color: "#EF8171" },
+  { name: "Nginx", icon: <SiNginx />, color: "#FDBA36" },
+  { name: "Mysql", icon: <SiMysql />, color: "#FDBA36" },
+  { name: "Sonarqube", icon: <SiSonarqube />, color: "#FDBA36" },
 ];
 
 export default function AnimatedSkillsRotatingCircle() {
-  const size = 400;
-  const radius = 175;
   const [rotation, setRotation] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Check if mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
     // Animate rotation angle for orbit effect
     const interval = setInterval(() => {
       setRotation((prev) => (prev + 0.008) % (2 * Math.PI));
     }, 16); // ~60fps
-    return () => clearInterval(interval);
+    
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('resize', checkMobile);
+    };
   }, []);
 
+  const size = isMobile ? 280 : 400;
+  const radius = isMobile ? 120 : 175;
+  const iconSize = isMobile ? 28 : 38;
+
   return (
-    <section id="skills" className="max-w-md mx-auto py-16 text-center select-none">
-      <h2 className="text-3xl font-extrabold text-cyan mb-8 drop-shadow-lg">
+    <section id="skills" className="max-w-md mx-auto py-16 text-center select-none px-4">
+      <h2 className="text-2xl sm:text-3xl font-extrabold text-cyan mb-8 drop-shadow-lg">
         My Skills & Technologies
       </h2>
       <div className="relative mx-auto" style={{ width: size, height: size }}>
         {skills.map((skill, index) => {
           const baseAngle = (2 * Math.PI * index) / skills.length;
           const angle = baseAngle + rotation;
-          const x = size / 2 + radius * Math.cos(angle) - 32;
-          const y = size / 2 + radius * Math.sin(angle) - 32;
+          const iconOffset = isMobile ? 20 : 32;
+          const x = size / 2 + radius * Math.cos(angle) - iconOffset;
+          const y = size / 2 + radius * Math.sin(angle) - iconOffset;
           return (
             <div
               key={skill.name}
@@ -62,7 +77,7 @@ export default function AnimatedSkillsRotatingCircle() {
               style={{
                 left: x,
                 top: y,
-                width: 64,
+                width: isMobile ? 40 : 64,
                 zIndex: 2,
                 transition: "left 0.05s linear, top 0.05s linear"
               }}
@@ -76,10 +91,12 @@ export default function AnimatedSkillsRotatingCircle() {
                   color: "#fff",
                 }}
               >
-                {skill.icon}
+                <div style={{ fontSize: iconSize }}>
+                  {skill.icon}
+                </div>
               </div>
               <span
-                className="text-xs font-mono mt-2 font-bold drop-shadow"
+                className={`font-mono mt-2 font-bold drop-shadow ${isMobile ? 'text-xs' : 'text-xs'}`}
                 style={{
                   color: skill.color,
                   textShadow: "0 0 8px black, 0 0 14px #00e5ff44",
