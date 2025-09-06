@@ -34,69 +34,66 @@ const skills = [
 export default function AnimatedSkillsRotatingCircle() {
   const [rotation, setRotation] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
 
   useEffect(() => {
-    // Check if mobile
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+    // Check screen size
+    const checkScreenSize = () => {
+      const width = window.innerWidth;
+      setIsMobile(width < 640);
+      setIsTablet(width >= 640 && width < 1024);
     };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
     
-    // Animate rotation angle for orbit effect
+    // Animate rotation angle for orbit effect - slower on mobile for better performance
     const interval = setInterval(() => {
-      setRotation((prev) => (prev + 0.008) % (2 * Math.PI));
-    }, 16); // ~60fps
+      setRotation((prev) => (prev + (isMobile ? 0.004 : 0.008)) % (2 * Math.PI));
+    }, isMobile ? 32 : 16); // 30fps on mobile, 60fps on desktop
     
     return () => {
       clearInterval(interval);
-      window.removeEventListener('resize', checkMobile);
+      window.removeEventListener('resize', checkScreenSize);
     };
-  }, []);
+  }, [isMobile]);
 
-  const size = isMobile ? 280 : 400;
-  const radius = isMobile ? 120 : 175;
-  const iconSize = isMobile ? 28 : 38;
+  // Responsive sizing
+  const size = isMobile ? 300 : isTablet ? 350 : 400;
+  const radius = isMobile ? 110 : isTablet ? 140 : 175;
+  const iconSize = isMobile ? 24 : isTablet ? 32 : 38;
 
   return (
-    <section id="skills" className="max-w-md mx-auto py-16 text-center select-none px-4">
-      <h2 className="text-2xl sm:text-3xl font-extrabold text-cyan mb-8 drop-shadow-lg">
+    <section id="skills" className="max-w-6xl mx-auto py-12 sm:py-16 text-center select-none px-4">
+      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-cyan mb-8 sm:mb-12 drop-shadow-lg">
         My Skills & Technologies
       </h2>
-      <div className="relative mx-auto" style={{ width: size, height: size }}>
-        {skills.map((skill, index) => {
-          const baseAngle = (2 * Math.PI * index) / skills.length;
-          const angle = baseAngle + rotation;
-          const iconOffset = isMobile ? 20 : 32;
-          const x = size / 2 + radius * Math.cos(angle) - iconOffset;
-          const y = size / 2 + radius * Math.sin(angle) - iconOffset;
-          return (
+      
+      {/* Mobile Grid Layout */}
+      {isMobile ? (
+        <div className="grid grid-cols-3 sm:grid-cols-4 gap-4 sm:gap-6 max-w-md mx-auto">
+          {skills.map((skill, index) => (
             <div
               key={skill.name}
-              className="absolute flex flex-col items-center"
-              style={{
-                left: x,
-                top: y,
-                width: isMobile ? 40 : 64,
-                zIndex: 2,
-                transition: "left 0.05s linear, top 0.05s linear"
-              }}
+              className="flex flex-col items-center p-3 sm:p-4 rounded-lg hover:bg-white/5 transition-colors"
               title={skill.name}
             >
               <div
-                className="rounded-full p-2 shadow-neon"
+                className="rounded-full shadow-neon flex items-center justify-center mb-2"
                 style={{
                   backgroundColor: skill.color,
-                  boxShadow: `0 0 20px ${skill.color}cc, 0 0 8px #00e5ff88`,
+                  boxShadow: `0 0 12px ${skill.color}cc, 0 0 6px #00e5ff88`,
                   color: "#fff",
+                  width: 48,
+                  height: 48,
+                  padding: '8px'
                 }}
               >
-                <div style={{ fontSize: iconSize }}>
+                <div style={{ fontSize: 24 }}>
                   {skill.icon}
                 </div>
               </div>
               <span
-                className={`font-mono mt-2 font-bold drop-shadow ${isMobile ? 'text-xs' : 'text-xs'}`}
+                className="font-mono text-xs font-bold drop-shadow text-center leading-tight"
                 style={{
                   color: skill.color,
                   textShadow: "0 0 8px black, 0 0 14px #00e5ff44",
@@ -105,9 +102,63 @@ export default function AnimatedSkillsRotatingCircle() {
                 {skill.name}
               </span>
             </div>
-          );
-        })}
-      </div>
+          ))}
+        </div>
+      ) : (
+        /* Desktop Circular Layout */
+        <div className="relative mx-auto overflow-hidden" style={{ width: size, height: size }}>
+          {skills.map((skill, index) => {
+            const baseAngle = (2 * Math.PI * index) / skills.length;
+            const angle = baseAngle + rotation;
+            const iconOffset = isTablet ? 20 : 32;
+            const x = size / 2 + radius * Math.cos(angle) - iconOffset;
+            const y = size / 2 + radius * Math.sin(angle) - iconOffset;
+            return (
+              <div
+                key={skill.name}
+                className="absolute flex flex-col items-center"
+                style={{
+                  left: x,
+                  top: y,
+                  width: isTablet ? 48 : 64,
+                  height: isTablet ? 48 : 64,
+                  zIndex: 2,
+                  transition: "left 0.1s ease-out, top 0.1s ease-out"
+                }}
+                title={skill.name}
+              >
+                <div
+                  className="rounded-full shadow-neon flex items-center justify-center"
+                  style={{
+                    backgroundColor: skill.color,
+                    boxShadow: `0 0 20px ${skill.color}cc, 0 0 8px #00e5ff88`,
+                    color: "#fff",
+                    width: isTablet ? 40 : 48,
+                    height: isTablet ? 40 : 48,
+                    padding: '8px'
+                  }}
+                >
+                  <div style={{ fontSize: iconSize }}>
+                    {skill.icon}
+                  </div>
+                </div>
+                <span
+                  className="font-mono mt-2 font-bold drop-shadow text-center leading-tight"
+                  style={{
+                    color: skill.color,
+                    textShadow: "0 0 8px black, 0 0 14px #00e5ff44",
+                    fontSize: isTablet ? '11px' : '12px',
+                    maxWidth: '60px',
+                    wordBreak: 'break-word'
+                  }}
+                >
+                  {skill.name}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </section>
   );
 }

@@ -1,6 +1,6 @@
 import resumePDF from '../assets/Gopal-DevOps.pdf';
 import { useState, useEffect } from "react";
-import { FaBars, FaTimes, FaHome } from "react-icons/fa";
+import { FaBars, FaTimes, FaHome, FaChevronRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
@@ -23,13 +23,13 @@ export default function Navbar() {
 
   const navItems = [
 
-    { label: "home", href: "home" },
-    { label: "about", href: "about" },
-    { label: "experience", href: "experience" },
-    { label: "skills", href: "skills" },
-    { label: "projects", href: "projects" },
-    { label: "achievement", href: "achievement" },
-    { label: "resume", href: resumePDF, isResume: true },
+    { label: "Home", href: "home" },
+    { label: "About", href: "about" },
+    { label: "Experience", href: "experience" },
+    { label: "Skills", href: "skills" },
+    { label: "Projects", href: "projects" },
+    { label: "Achievement", href: "achievement" },
+    { label: "Resume", href: resumePDF, isResume: true },
   ];
 
   const handleNavClick = (section, isHome = false) => {
@@ -110,18 +110,24 @@ export default function Navbar() {
         </button>
       </div>
       <div
-        className={`fixed inset-0 bg-white z-40 flex flex-col md:hidden transition-transform duration-300 ease-in-out ${
+        className={`fixed inset-0 z-50 flex flex-col md:hidden transition-transform duration-300 ease-in-out ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
+        style={{ 
+          backgroundColor: '#ffffff',
+          opacity: 1,
+          backdropFilter: 'none'
+        }}
         onClick={() => setOpen(false)}
       >
         {/* Header with logo and close button */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-200">
-          <div className="text-cyan font-mono text-lg font-bold tracking-widest">
+        <div className="flex items-center justify-between p-4 border-b border-gray-200" style={{ backgroundColor: '#ffffff' }}>
+          <div className="text-cyan font-mono text-lg font-bold tracking-widest" style={{ color: '#00E5FF' }}>
             devops&lt;&gt;_
           </div>
           <button
             className="text-gray-600 hover:text-gray-800 text-2xl p-2"
+            style={{ color: '#374151' }}
             onClick={(e) => {
               e.stopPropagation();
               setOpen(false);
@@ -133,31 +139,47 @@ export default function Navbar() {
         </div>
         
         {/* Navigation Items */}
-        <div className="flex-1 flex flex-col justify-center items-center gap-6 px-4 pb-20">
+        <div className="flex-1 flex flex-col justify-start items-start px-6 pt-8 pb-20" style={{ backgroundColor: '#ffffff' }}>
           {navItems.map((item, index) => {
-            return item.isResume ? (
-              <a
-                key={item.label}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1 bg-violet text-white font-bold px-8 py-3 rounded-full shadow-lg hover:bg-cyan transition text-lg"
-                onClick={e => e.stopPropagation()}
-              >
-                Resume
-              </a>
-            ) : (
-              <button
-                key={typeof item.label === 'string' ? item.label : 'home'}
-                className="hover:text-violet transition font-semibold bg-transparent border-none cursor-pointer flex items-center gap-1 text-lg text-gray-800 py-3 px-6 rounded-lg hover:bg-gray-100 w-full justify-center"
-                onClick={e => {
-                  e.stopPropagation();
-                  handleNavClick(item.href, item.isHome);
-                }}
-                aria-label={`Go to ${typeof item.label === 'string' ? item.label : 'home'} section`}
-              >
-                {item.label}
-              </button>
+            const isLastItem = index === navItems.length - 1;
+            return (
+              <div key={typeof item.label === 'string' ? item.label : 'home'} className="w-full">
+                {item.isResume ? (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 bg-violet text-white font-bold px-6 py-3 rounded-full shadow-lg hover:bg-cyan transition text-lg"
+                    style={{ backgroundColor: '#7C4DFF' }}
+                    onClick={e => e.stopPropagation()}
+                  >
+                    Resume
+                  </a>
+                ) : (
+                  <button
+                    className="hover:text-violet transition font-semibold bg-transparent border-none cursor-pointer flex items-center justify-between text-xl text-black py-3 px-0 rounded-lg hover:bg-gray-100 w-full font-bold"
+                    style={{ 
+                      color: '#000000',
+                      backgroundColor: 'transparent'
+                    }}
+                    onClick={e => {
+                      e.stopPropagation();
+                      handleNavClick(item.href, item.isHome);
+                    }}
+                    aria-label={`Go to ${typeof item.label === 'string' ? item.label : 'home'} section`}
+                  >
+                    <span>{item.label}</span>
+                    <FaChevronRight className="text-gray-400 text-lg" />
+                  </button>
+                )}
+                {/* Separator line - show after each item except the last one */}
+                {!isLastItem && (
+                  <div 
+                    className="w-full h-px mt-3 mb-3"
+                    style={{ backgroundColor: '#E5E7EB' }}
+                  />
+                )}
+              </div>
             );
           })}
         </div>
