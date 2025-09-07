@@ -20,15 +20,16 @@ export const projects = [
       "Enhanced application observability with Prometheus & Grafana dashboards, reducing issue detection times."
     ],
     techStack: [
-      "AWS (EKS, IAM, VPC)",
+      "AWS (EKS, Fargate, EC2, IAM, VPC, RDS, S3, CloudFront, Route 53, Auto Scallig, Load Balancer)",
       "Kubernetes",
       "Helm",
       "Terraform",
       "HashiCorp Vault",
       "Prometheus & Grafana",
+      "ELK Stack",
       "Concourse CI",
+      "Jenkins",
       "Bash Scripting",
-      "Nginx"
     ],
     description: `
       <strong>Overview:</strong> HelloTeam is a scalable AWS microservice platform deployed on EKS using Kubernetes and Helm.<br/>
@@ -67,21 +68,19 @@ export const projects = [
       "Optimized costs and resource usage across all services for efficient operations."
     ],
     techStack: [
+      "AWS",
+      "Docker",
+      "Jenkins",
+      "Bash Scripting",
+      "bunny.net",
       "EMQX",
-      "Node.js",
       "Kafka",
       "PostgreSQL",
       "Grafana",
       "Prometheus",
       "Loki",
-      "Jenkins",
-      "Bash Scripting",
-      "Slack API",
-      "Email Notifications",
-      "bunny.net",
-      "IoT Devices",
       "Git",
-      "Docker"
+      "postgresql"
     ],
     description: `
       <strong>Overview:</strong> Gauge.ro is an innovative IoT platform that puts an end to RO service pain by providing real-time monitoring and management of water purifier systems.<br/>
@@ -96,8 +95,7 @@ export const projects = [
         <li>Deployed all applications to separate servers for development and production environments using Jenkins CI/CD.</li>
         <li>Optimized costs and resource usage across all services for efficient operations.</li>
       </ul>
-      <strong>Tech Stack:</strong> EMQX, Node.js, Kafka, PostgreSQL, Grafana, Prometheus, Loki, Jenkins, Bash Scripting, Slack API, Email Notifications, bunny.net, IoT Devices, Git, Docker
-    `,
+      <strong>Tech Stack:</strong>  AWS, Docker, Jenkins, Bash Scripting, bunny.net, EMQX, Kafka, PostgreSQL, Grafana, Prometheus, Loki, Git, postgresql`,
     ctas: [
       { label: "Visit Website", href: "https://gauge.ro" }
     ]
