@@ -1,10 +1,11 @@
 import helloTeamImg from '../assets/hello-team.png';
 import gaugeRoImg from '../assets/gauge.ro.jpg';
+import sabaHospitalityImg from '../assets/saba-hospitality.png';
 
 export const projects = [
   {
     slug: "helloteam",
-    year: "2024-2025",
+    year: "08/2024 – 09/2025",
     title: "HelloTeam – A True Employee Retention Platform",
     image: helloTeamImg,
     summary: "Enterprise project with autoscaling, CI/CD, Terraform, Vault, and more.",
@@ -13,35 +14,40 @@ export const projects = [
       This all-in-one platform empowers seamless collaboration and growth for a modern workforce.
     `,
     myRoleImpact: [
-      "Designed and implemented automated CI/CD pipelines using Concourse and Bash, reducing release cycle times by 20%.",
-      "Secured infrastructure with HashiCorp Vault integrating IAM and secrets management.",
-      "Provisioned scalable AWS infrastructure with Terraform optimizing network and load balancing.",
-      "Led migration to Kubernetes and Helm charts for container orchestration.",
-      "Enhanced application observability with Prometheus & Grafana dashboards, reducing issue detection times."
+      "Provisioned and automated AWS infrastructure with Terraform, covering EKS, VPC, RDS, ElastiCache, Amazon MQ, and CloudFront.",
+      "Deployed microservices on EKS Fargate with Helm charts, HPA, and health probes to ensure reliability, scalability, and self-healing.",
+      "Built CI/CD pipelines with Concourse CI for automated deployments.",
+      "Secured application data using HashiCorp Vault for secrets management.",
+      "Integrated logging with the EFK stack (Elasticsearch, Fluentd, Kibana) for comprehensive log management.",
+      "Managed traffic and application routing with CloudFront, Route 53, and Network Load Balancers (NLB) to ensure low latency and high availability.",
+      "Implemented secure remote access to the entire infrastructure using OpenVPN, enabling private access to internal applications such as Concourse CI, JRepo, and Hashicorp Vault."
     ],
     techStack: [
-      "AWS (EKS, Fargate, EC2, IAM, VPC, RDS, S3, CloudFront, Route 53, Auto Scallig, Load Balancer)",
+      "AWS (EKS, Fargate, EC2, IAM, VPC, RDS, ElastiCache, Amazon MQ, S3, CloudFront, Route 53, Auto Scaling, NLB)",
       "Kubernetes",
       "Helm",
+      "HPA",
       "Terraform",
       "HashiCorp Vault",
-      "Prometheus & Grafana",
-      "ELK Stack",
+      "EFK Stack",
       "Concourse CI",
-      "Jenkins",
-      "Bash Scripting",
+      "OpenVPN",
+      "Health Probes",
+      "Bash Scripting"
     ],
     description: `
       <strong>Overview:</strong> HelloTeam is a scalable AWS microservice platform deployed on EKS using Kubernetes and Helm.<br/>
       <strong>My Role & Impact:</strong>
       <ul>
-        <li>Designed and implemented automated CI/CD pipelines using Concourse and Bash, reducing release cycle times by 20%.</li>
-        <li>Secured infrastructure with HashiCorp Vault integrating IAM and secrets management.</li>
-        <li>Provisioned scalable AWS infrastructure with Terraform optimizing network and load balancing.</li>
-        <li>Led migration to Kubernetes and Helm charts for container orchestration.</li>
-        <li>Enhanced application observability with Prometheus & Grafana dashboards, reducing issue detection times.</li>
+        <li>Provisioned and automated AWS infrastructure with Terraform, covering EKS, VPC, RDS, ElastiCache, Amazon MQ, and CloudFront.</li>
+        <li>Deployed microservices on EKS Fargate with Helm charts, HPA, and health probes to ensure reliability, scalability, and self-healing.</li>
+        <li>Built CI/CD pipelines with Concourse CI for automated deployments.</li>
+        <li>Secured application data using HashiCorp Vault for secrets management.</li>
+        <li>Integrated logging with the EFK stack (Elasticsearch, Fluentd, Kibana) for comprehensive log management.</li>
+        <li>Managed traffic and application routing with CloudFront, Route 53, and Network Load Balancers (NLB) to ensure low latency and high availability.</li>
+        <li>Implemented secure remote access to the entire infrastructure using OpenVPN, enabling private access to internal applications such as Concourse CI, JRepo, and Hashicorp Vault.</li>
       </ul>
-      <strong>Tech Stack:</strong> AWS (EKS, IAM, VPC), Kubernetes, Helm, Terraform, HashiCorp Vault, Prometheus & Grafana, Concourse CI, Bash Scripting, Nginx
+      <strong>Tech Stack:</strong> AWS (EKS, Fargate, VPC, RDS, ElastiCache, Amazon MQ, CloudFront, Route 53, NLB), Kubernetes, Helm, HPA, Terraform, HashiCorp Vault, EFK Stack, Concourse CI, OpenVPN
     `,
     ctas: [
       { label: "Visit Website", href: "https://www.helloteam.com/" }
@@ -98,6 +104,54 @@ export const projects = [
       <strong>Tech Stack:</strong>  AWS, Docker, Jenkins, Bash Scripting, bunny.net, EMQX, Kafka, PostgreSQL, Grafana, Prometheus, Loki, Git, postgresql`,
     ctas: [
       { label: "Visit Website", href: "https://gauge.ro" }
+    ]
+  },
+  {
+    slug: "saba-hospitality",
+    year: "07/2025 – 11/2025",
+    title: "Saba Hospitality",
+    image: sabaHospitalityImg,
+    summary: "Hospitality platform with GCP infrastructure, automated CI/CD, and comprehensive DevOps practices.",
+    overview: `
+      Saba Hospitality is a comprehensive hospitality management platform built on Google Cloud Platform.
+      The platform leverages modern DevOps practices including containerized deployments, automated CI/CD pipelines, and infrastructure as code for seamless operations and scalability.
+    `,
+    myRoleImpact: [
+      "Designed and managed GCP infrastructure using GKE, Cloud DNS, Compute Engine, Artifact Registry, Secret Manager, Certificate Manager, Cloud Storage, Service Accounts, and Load Balancing.",
+      "Built GitHub Actions CI/CD pipelines to automate multi-stage Docker builds, image pushes, and GKE deployments using Helm across dev and prod environments.",
+      "Implemented ExternalDNS for automated DNS management and provisioned complete infrastructure using Terraform (IaC)."
+    ],
+    techStack: [
+      "GCP",
+      "GKE",
+      "Cloud DNS",
+      "Compute Engine",
+      "Artifact Registry",
+      "Secret Manager",
+      "Certificate Manager",
+      "Cloud Storage",
+      "Service Accounts",
+      "Load Balancing",
+      "GitHub Actions",
+      "Docker",
+      "Kubernetes",
+      "Helm",
+      "ExternalDNS",
+      "Terraform",
+      "CI/CD"
+    ],
+    description: `
+      <strong>Overview:</strong> Saba Hospitality is a comprehensive hospitality management platform built on Google Cloud Platform with modern DevOps practices.<br/>
+      <strong>My Role & Impact:</strong>
+      <ul>
+        <li>Designed and managed GCP infrastructure using GKE, Cloud DNS, Compute Engine, Artifact Registry, Secret Manager, Certificate Manager, Cloud Storage, Service Accounts, and Load Balancing.</li>
+        <li>Built GitHub Actions CI/CD pipelines to automate multi-stage Docker builds, image pushes, and GKE deployments using Helm across dev and prod environments.</li>
+        <li>Implemented ExternalDNS for automated DNS management and provisioned complete infrastructure using Terraform (IaC).</li>
+      </ul>
+      <strong>Tech Stack:</strong> GCP, GKE, Cloud DNS, Compute Engine, Artifact Registry, Secret Manager, Certificate Manager, Cloud Storage, Service Accounts, Load Balancing, GitHub Actions, Docker, Kubernetes, Helm, ExternalDNS, Terraform, CI/CD
+    `,
+    ctas: [
+      { label: "View Platform", href: "https://saba-hospitality.com" }
     ]
   },
 ];

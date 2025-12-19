@@ -5,27 +5,28 @@ export default function WorkExperience() {
     {
       company: "Aesthisia Datacenters Private Limited",
       role: "DevOps Engineer",
-      period: "Feb 2024 - Present",
-      location: "On-Site / Gurgaon, India",
-      description: `Manage and deploy applications on AWS EKS using Kubernetes and Helm.
-Automate CI/CD pipelines for streamlined deployments and faster release cycles.
-Implement HashiCorp Vault for secure secret management.
-Optimize cloud infrastructure using Terraform (IaC) to automate AWS resource provisioning.
-Improve application performance using Amazon CloudFront caching and AWS Auto Scaling.
-Monitor system performance and logs with Prometheus, Grafana, and Loki to ensure uptime.
-Reduced AWS cloud costs by 30-40% by migrating over-provisioned workloads to AWS Fargate and optimizing resource allocation.`,
+      period: "02/2024 – 11/2025",
+      location: "Gurgaon, India",
+      description: `Deployed and managed containerized applications on AWS EKS and GCP Kubernetes Engine using Helm, achieving high availability and scalability.
+Built and maintained CI/CD pipelines using GitHub Actions, GitLab CI, Concourse CI, Jenkins and Argo CD, automating build, test, deployment, and Kubernetes delivery workflows, and reducing release cycle time by ~25%.
+Implemented and maintained HashiCorp Vault with AWS IAM for secure secrets management.
+Provisioned and optimized multi-cloud infrastructure with Terraform, enhancing reliability, scalability, and cost efficiency.
+Achieved 20–30% cost reduction by migrating workloads to AWS Fargate and optimizing cloud resource allocation.
+Enhanced performance and uptime using AWS CloudFront, Auto Scaling, and network optimizations.
+Monitored system health with Prometheus, Grafana, Fluent Bit, and proactively maintained 99.99% uptime.`,
     },
     {
       company: "Lalita Automation",
       role: "DevOps Engineer (Intern)",
-      period: "Oct 2023 - Jan 2024",
-      location: "Remote / Bangalore, India",
-      description: `Set up and managed development and production environments on separate servers.
-Configured infrastructure with Jenkins, PostgreSQL, Kafka, Prometheus, and Grafana for deployment and monitoring.
-Implemented EMQX for IoT data ingestion and integrated Kafka for real-time data streaming.
-Deployed applications with Kubernetes and Docker, ensuring scalable and reliable operations.
-Established Slack and email alerts for service downtimes using Prometheus and Loki monitoring.
-Optimized cloud resource utilization, reducing infrastructure costs.`,
+      period: "10/2023 – 01/2024",
+      location: "Bangalore, India",
+      description: `Created separate development and production environments.
+Built containerized applications with Docker on cloud.
+Deployed application through Jenkins CI/CD pipeline.
+Integrated EMQX and Kafka for real-time IoT data streaming.
+Set up Prometheus and Grafana for monitoring with Slack alerts for downtimes.
+Used PostgreSQL database and utilized Bash script to take DB backup and cleanup.
+Optimized cloud resources, reducing infrastructure costs.`,
     },
   ];
 
